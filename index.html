@@ -99,7 +99,8 @@
         let particles = [];
         function getGuestInfo() {
             const guestName = "علی";
-            const profilePicUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAcPUlEQVR42u19";
+            // لوگو تمیز SVG از عکس شما
+            const profilePicUrl = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20300%20400%22%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpolygon%20points%3D%2230%2C40%20100%2C40%20100%2C280%2030%2C360%22/%3E%3Cpolygon%20points%3D%2280%2C40%20160%2C40%20250%2C280%20180%2C360%20100%2C200%20170%2C120%22/%3E%3Cpolygon%20points%3D%22190%2C40%20270%2C40%20270%2C360%20190%2C280%22/%3E%3C/g%3E%3C/svg%3E";
             return { guestName, profilePicUrl };
         }
         btn.addEventListener('click', () => {
