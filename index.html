@@ -58,13 +58,15 @@
 
         /* عکس یا آواتار */
         #profile-pic {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 4px solid #ff7300;
+            border: 3px solid #ff7300;
             margin-bottom: 20px;
-            object-fit: cover;
-            box-shadow: 0 0 20px rgba(255, 115, 0, 0.8);
+            object-fit: contain;
+            background: #111;
+            padding: 12px;
+            box-shadow: 0 0 25px rgba(255, 115, 0, 0.7);
         }
 
         h1 { margin: 10px 0; font-size: 28px; color: #fff; }
@@ -95,8 +97,8 @@
     <button id="explode-btn">ورود به Nononick</button>
 
     <div id="welcome-screen">
-        <!-- اینجا عکس میاد. الان یه آواتار با اسم اون میسازه -->
-        <img id="profile-pic" src="" alt="Profile">
+        <!-- لوگو تمیز Nononick -->
+        <img id="profile-pic" src="" alt="Nononick Logo">
         <h1 id="guest-name">سلام رفیق!</h1>
         <div class="brand">به Nononick خوش اومدی</div>
         <p style="color: #ddd;">اگه خواستی یه وب‌سایت حرفه‌ای داشته باشی، من اینجام!</p>
@@ -116,16 +118,13 @@
 
         // ==========================================
         // اینجا مهم‌ترین قسمت است: شخصی‌سازی
-        // برای هر نفر، اسم و لینک آواتارش رو تغییر بده
         // ==========================================
         function getGuestInfo() {
-            // مثال: اسم دوستت و آیدی اینستاگرامش
+            // شخصی‌سازی: اسم مهمان
             const guestName = "علی"; // اسم دوستت رو اینجا بنویس
-            const instaID = "ali_insta"; // آیدی دوستت رو اینجا بنویس
 
-            // ساخت آواتار با اسم (سرویس رایگان ui-avatars)
-            // اگر عکس واقعی داری، آدرس عکس رو در src بذار
-            const profilePicUrl = `https://ui-avatars.com/api/?name=${guestName}&background=ff7300&color=fff&size=512&bold=true`;
+            // لوگو تمیز Nononick
+            const profilePicUrl = "logo.png";
 
             return { guestName, profilePicUrl };
         }
