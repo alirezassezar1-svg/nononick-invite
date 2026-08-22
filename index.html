@@ -16,8 +16,6 @@
             align-items: center;
             height: 100vh;
         }
-
-        /* دکمه‌ی اصلی */
         #explode-btn {
             font-size: 26px;
             font-weight: bold;
@@ -32,14 +30,10 @@
             z-index: 10;
             animation: pulse 1s infinite alternate;
         }
-
-        /* افکت نبض دکمه */
         @keyframes pulse {
             from { transform: scale(0.95); box-shadow: 0 0 15px rgba(255, 60, 0, 0.5); }
             to { transform: scale(1); box-shadow: 0 0 40px rgba(255, 60, 0, 1); }
         }
-
-        /* صفحه بعد از انفجار */
         #welcome-screen {
             display: none;
             text-align: center;
@@ -55,8 +49,6 @@
             border: 2px solid #ff7300;
             box-shadow: 0 0 50px rgba(255, 115, 0, 0.6);
         }
-
-        /* لوگو تمیز Nononick */
         #profile-pic {
             width: 140px;
             height: 140px;
@@ -68,12 +60,9 @@
             padding: 14px;
             box-shadow: 0 0 25px rgba(255, 115, 0, 0.7);
         }
-
         h1 { margin: 10px 0; font-size: 28px; color: #fff; }
         .brand { color: #ff7300; font-size: 20px; font-weight: bold; margin-bottom: 30px;}
         .host { font-size: 16px; color: #ccc; margin-top: 20px; }
-
-        /* ذرات انفجار */
         #canvas {
             position: absolute;
             top: 0;
@@ -83,7 +72,6 @@
             z-index: 1;
             pointer-events: none;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
             to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -91,11 +79,8 @@
     </style>
 </head>
 <body>
-
     <canvas id="canvas"></canvas>
-
     <button id="explode-btn">ورود به Nononick</button>
-
     <div id="welcome-screen">
         <!-- لوگو تمیز Nononick -->
         <img id="profile-pic" src="" alt="Nononick Logo">
@@ -104,55 +89,33 @@
         <p style="color: #ddd;">اگه خواستی یه وب‌سایت حرفه‌ای داشته باشی، من اینجام!</p>
         <div class="host">از طرف: علیرضا</div>
     </div>
-
     <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         const btn = document.getElementById('explode-btn');
         const welcome = document.getElementById('welcome-screen');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         let particles = [];
-
-        // ==========================================
-        // اینجا مهم‌ترین قسمت است: شخصی‌سازی
-        // ==========================================
         function getGuestInfo() {
-            // شخصی‌سازی: اسم مهمان
-            const guestName = "علی"; // اسم دوستت رو اینجا بنویس
-
-            // لوگو تمیز Nononick (embedded)
-            const profilePicUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAC8TUlEQVR42ux9d4Ab1bX+OfeOtK5gG2xj";
-
+            const guestName = "علی";
+            const profilePicUrl = "logo.png";
             return { guestName, profilePicUrl };
         }
-
         btn.addEventListener('click', () => {
             const { guestName, profilePicUrl } = getGuestInfo();
-
-            // 1. لرزش گوشی (مخصوص موبایل)
             if (navigator.vibrate) {
-                navigator.vibrate([200, 100, 300]); // 200ms لرزش، 100ms مکث، 300ms لرزش
+                navigator.vibrate([200, 100, 300]);
             }
-
-            // 2. لرزش صفحه (Shake) با CSS
             document.body.style.animation = "shake 0.5s";
-            
-            // 3. مخفی کردن دکمه و اجرای انفجار
             btn.style.display = 'none';
             createParticles();
-
-            // 4. بعد از نیم ثانیه، عکس و پیام رو نشون بده
             setTimeout(() => {
                 document.getElementById('profile-pic').src = profilePicUrl;
                 document.getElementById('guest-name').innerText = "سلام " + guestName + "!";
                 welcome.style.display = 'block';
             }, 700);
         });
-
-        // ساخت ذرات انفجار
         function createParticles() {
             for (let i = 0; i < 300; i++) {
                 particles.push({
@@ -161,12 +124,11 @@
                     vx: (Math.random() - 0.5) * 25,
                     vy: (Math.random() - 0.5) * 25,
                     size: Math.random() * 12 + 2,
-                    color: `hsl(${Math.random() * 60 + 300}, 100%, 50%)` // رنگ‌های نارنجی و قرمز و زرد
+                    color: `hsl(${Math.random() * 60 + 300}, 100%, 50%)`
                 });
             }
             animate();
         }
-
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particles.length; i++) {
@@ -177,12 +139,10 @@
                 ctx.fill();
                 p.x += p.vx;
                 p.y += p.vy;
-                p.vy += 0.15; // جاذبه
+                p.vy += 0.15;
             }
             requestAnimationFrame(animate);
         }
-
-        // اضافه کردن انیمیشن لرزش به CSS
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes shake {
